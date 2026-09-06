@@ -21,7 +21,7 @@ DAMPING_6020 = 2.0 * DAMPING_RATIO * ARMATURE_6020 * NATURAL_FREQ
 IRMV_V3_CFG = ArticulationCfg(
     spawn=sim_utils.UrdfFileCfg(
         fix_base=False,
-        replace_cylinders_with_capsules=True,
+        replace_cylinders_with_capsules=False,
         asset_path=f"{ASSET_DIR}/irmv_v3_description/urdf/irmv_v3.urdf",
         activate_contact_sensors=True,
         rigid_props=sim_utils.RigidBodyPropertiesCfg(
@@ -46,6 +46,8 @@ IRMV_V3_CFG = ArticulationCfg(
             ".*_hip_pitch_joint": -0.3,
             ".*_knee_joint": 0.6,
             ".*_ankle_pitch_joint": -0.3,
+            "left_shoulder_pitch_joint": 0.00,
+            "right_shoulder_pitch_joint": 0.00,
         },
         joint_vel={".*": 0.0},
     ),
@@ -71,6 +73,15 @@ IRMV_V3_CFG = ArticulationCfg(
             stiffness=2.0 * STIFFNESS_6020,
             damping=2.0 * DAMPING_6020,
             armature=2.0 * ARMATURE_6020,
+        ),
+        # 新增肩部
+        "shoulders": ImplicitActuatorCfg(
+            joint_names_expr=[".*_shoulder_pitch_joint"],
+            effort_limit_sim=40.0,
+            velocity_limit_sim=20.0,
+            stiffness=3.0 *STIFFNESS_8520,
+            damping=DAMPING_8520,
+            armature=ARMATURE_8520,
         ),
     },
 )
