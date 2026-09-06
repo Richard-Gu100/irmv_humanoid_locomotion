@@ -1,0 +1,51 @@
+name: irmv_v3
+hip_height: 0.75
+init_q: null
+q_zero: [0.0, 0.0, -0.3, 0.6, -0.3, 0.0, 0.0,
+         0.0, 0.0, -0.3, 0.6, -0.3, 0.0, 0.0]
+
+endeff_names: ['left_ankle_roll_joint', 'right_ankle_roll_joint']
+group_label: C2
+
+
+joint_order:
+  - left_hip_yaw_joint
+  - left_hip_roll_joint
+  - left_hip_pitch_joint
+  - left_knee_joint
+  - left_ankle_pitch_joint
+  - left_ankle_roll_joint
+  - left_shoulder_pitch_joint
+  - right_hip_yaw_joint
+  - right_hip_roll_joint
+  - right_hip_pitch_joint
+  - right_knee_joint
+  - right_ankle_pitch_joint
+  - right_ankle_roll_joint
+  - right_shoulder_pitch_joint
+
+permutation_Q_js: [[7, 8, 9, 10, 11, 12, 13, 0, 1, 2, 3, 4, 5, 6]]
+reflection_Q_js: [[-1, -1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, 1]]
+
+permutation_TqQ_js: [[7, 8, 9, 10, 11, 12, 13, 0, 1, 2, 3, 4, 5, 6]]
+reflection_TqQ_js: [[-1, -1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, 1]]
+
+representations:
+  R3:
+    type: "regular"
+    matrix: [[1, 0, 0],
+             [0, -1, 0],
+             [0, 0, 1]]
+  R3_pseudo:
+    type: "regular"
+    matrix: [[1, 0, 0],
+             [0, -1, 0],
+             [0, 0, 1]]
+  Q_js:
+    type: "permutation"
+    perm: [7, 8, 9, 10, 11, 12, 13, 0, 1, 2, 3, 4, 5, 6]
+    signs: [-1, -1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, 1]
+  TqQ_js:
+    type: "permutation"
+    perm: [7, 8, 9, 10, 11, 12, 13, 0, 1, 2, 3, 4, 5, 6]
+    signs: [-1, -1, 1, 1, 1, -1, 1, -1, -1, 1, 1, 1, -1, 1]
